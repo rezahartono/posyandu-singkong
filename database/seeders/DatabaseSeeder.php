@@ -2,8 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use Carbon\Carbon;
+use Faker\Provider\Uuid;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::create([
+            'id' => Uuid::uuid(),
+            'name' => 'Administrator',
+            'username' => 'posyanduadmin',
+            'email' => 'admin@posyandu-singkong.com',
+            'password' => Hash::make('Po5y@nduS1n9k0n9'),
+            'tanggal_lahir' => Carbon::now(),
+        ]);
     }
 }
