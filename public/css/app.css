@@ -1,5 +1,6 @@
 :root {
     --color-primary: #4877EF;
+    --color-dark-blue: #182052;
 }
 
 body {
@@ -9,4 +10,23 @@ body {
 
 .bg-primary {
     background: var(--color-primary) !important;
+}
+
+.bg-login-card {
+    background-image: url('/images/logo.png');
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-h1 {
+    font-size: 64px;
+    font-weight: bold;
+    color: var(--color-dark-blue) !important;
+}
+
+.login-h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--color-dark-blue) !important;
 }

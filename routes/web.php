@@ -15,8 +15,11 @@ use App\Http\Controllers\Web\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'login'])->name('login');
 
-Route::get('login', [AuthController::class, 'loginIndex']);
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
