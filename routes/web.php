@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\MasterData\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,8 @@ Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::prefix('master-data')->group(function () {
+        Route::get('users', [UsersController::class, 'index']);
     });
 });
