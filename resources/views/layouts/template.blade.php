@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('/dist/admin-lte') }}/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('/dist/admin-lte') }}/plugins/summernote/summernote-bs4.min.css">
+    @livewireStyles()
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -226,6 +227,7 @@
     </div>
     <!-- ./wrapper -->
 
+    @livewireScripts()
     <!-- jQuery -->
     <script src="{{ asset('/dist/admin-lte') }}/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -262,10 +264,6 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('/dist/admin-lte') }}/dist/js/pages/dashboard.js"></script>
     <script>
-        Livewire.on("showAlert", data => {
-            showAlert(data)
-        })
-
         function showAlert(data) {
             switch (data.type) {
                 case "success":

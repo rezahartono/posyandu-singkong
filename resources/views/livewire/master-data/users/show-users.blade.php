@@ -1,13 +1,12 @@
 <div>
-    <div class="row bg-white py-3 rounded rounded-5 shadow shadow-sm" style="max-height: 100%">
+    <div class="row bg-white p-3 rounded rounded-5 shadow shadow-sm" style="max-height: 100%">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <div class="input-group w-50">
                 <div class="w-25">
                     <select class="form-control w-auto input-group-prepend rounded rounded-0" wire:model="filter"
                         id="filter">
                         <option value="name" selected>Nama Lengkap</option>
-                        <option value="email" selected>Email</option>
-                        {{-- <option value="created_at" selected>Created</option> --}}
+                        <option value="email">Email</option>
                     </select>
                 </div>
                 <input type="search" wire:model="search" class="form-control border-right-0 rounded-left rounded-5"
@@ -15,6 +14,9 @@
                 <span class="input-group-text border-left-0 bg-white rounded-right rounded-5" id="search-label">
                     <i class="fas fa-search"></i>
                 </span>
+            </div>
+            <div class="ms-auto">
+                <a href="#" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Buat User</a>
             </div>
         </div>
         <div class="col-12 mt-3">

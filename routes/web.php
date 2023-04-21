@@ -23,6 +23,10 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::prefix('master-data')->group(function () {
-        Route::get('users', [UsersController::class, 'index']);
+        Route::prefix('users')->group(function () {
+            Route::get('/', [UsersController::class, 'index']);
+            Route::delete('/delete/{id}', [UsersController::class, 'delete']);
+            Route::delete('/{id}', [UsersController::class, 'delete']);
+        });
     });
 });

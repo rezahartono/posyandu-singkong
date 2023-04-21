@@ -12,7 +12,7 @@ class ShowUsers extends Component
 
     public $search, $filter;
 
-    protected $queryString = ['search'];
+    protected $queryString = ['search' => ['except' => '']];
 
     protected $paginationTheme = 'bootstrap';
 
@@ -27,17 +27,5 @@ class ShowUsers extends Component
             "users" => User::where($this->filter, 'like', '%' . $this->search . '%')->paginate(10),
         ];
         return view('livewire.master-data.users.show-users', $data);
-    }
-
-    public function doDelete(User $user)
-    {
-        $delete = $user->delete();
-
-        if ($delete) {
-            $this->emit("showAlert", [
-                "messages" => "Users has been deleted!",
-                "type" => 'success',
-            ],);
-        }
     }
 }
