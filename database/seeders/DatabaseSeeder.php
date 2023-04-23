@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@posyandu-singkong.com',
             'password' => Hash::make('Po5y@nduS1n9k0n9'),
             'tanggal_lahir' => Carbon::now(),
+            'fl_admin' => "Y",
         ]);
     }
 }

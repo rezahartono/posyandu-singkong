@@ -16,7 +16,7 @@
                 </span>
             </div>
             <div class="ms-auto">
-                <a href="#" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Buat User</a>
+                <a href="users/create" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Buat User</a>
             </div>
         </div>
         <div class="col-12 mt-3">
@@ -48,10 +48,9 @@
                                         <i class="fa-solid fa-eye"></i>
                                     </button> --}}
 
-                                    <button type="button" wire:click="doDelete({{ $user }})"
-                                        class="btn btn-danger">
+                                    <a href="/master-data/users/delete/{{ $user->id }}" class="btn btn-danger">
                                         <i class="fas fa-trash"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

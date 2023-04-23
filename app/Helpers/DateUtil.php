@@ -2,9 +2,16 @@
 
 namespace App\Helpers;
 
+use Carbon\Carbon;
+
 class DateUtil
 {
-    public function listMonth()
+    public static function now()
+    {
+        return Carbon::now();
+    }
+
+    public static function listMonth()
     {
         $months = array();
 

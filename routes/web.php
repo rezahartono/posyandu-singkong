@@ -25,8 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::prefix('master-data')->group(function () {
         Route::prefix('users')->group(function () {
             Route::get('/', [UsersController::class, 'index']);
-            Route::delete('/delete/{id}', [UsersController::class, 'delete']);
-            Route::delete('/{id}', [UsersController::class, 'delete']);
+            Route::get('create', [UsersController::class, 'create']);
+            Route::post('create', [UsersController::class, 'create']);
+            Route::get('delete/{id}', [UsersController::class, 'delete']);
         });
     });
 });
