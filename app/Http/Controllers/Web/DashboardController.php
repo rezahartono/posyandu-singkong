@@ -10,7 +10,9 @@ class DashboardController extends Controller
     public function index()
     {
         $data = [
-            "title" => "Dashboard"
+            "title" => "Dashboard",
+            "menu" => "Dashboard",
+            "sub_menu" => null,
         ];
         return view('pages.dashboard', $data);
     }

@@ -5,8 +5,8 @@
                 <div class="w-25">
                     <select class="form-control w-auto input-group-prepend rounded rounded-0" wire:model="filter"
                         id="filter">
-                        <option value="name" selected>Nama Lengkap</option>
-                        <option value="email">Email</option>
+                        <option value="name" selected>Nama</option>
+                        <option value="description">Deskripsi</option>
                     </select>
                 </div>
                 <input type="search" wire:model="search" class="form-control border-right-0 rounded-left rounded-5"
@@ -16,7 +16,7 @@
                 </span>
             </div>
             <div class="ms-auto">
-                <a href="users/create" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Buat User</a>
+                <a href="category/create" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Buat Kategori</a>
             </div>
         </div>
         <div class="col-12 mt-3">
@@ -25,9 +25,8 @@
                     <thead class="bg-primary text-white">
                         <tr>
                             <th class="text-center" scope="col" width="10%">No</th>
-                            <th class="text-center" scope="col">Nama Lengkap</th>
-                            <th class="text-center" scope="col">Tanggal Lahir</th>
-                            <th class="text-center" scope="col">Email</th>
+                            <th class="text-center" scope="col">Nama Kategori</th>
+                            <th class="text-center" scope="col">Deskripsi</th>
                             <th class="text-center" scope="col">Action</th>
                         </tr>
                     </thead>
@@ -36,18 +35,17 @@
                             $idx = 1;
                         @endphp
 
-                        @foreach ($users as $user)
+                        @foreach ($categories as $category)
                             <tr>
                                 <th class="text-center" scope="row">{{ $idx++ }}</th>
-                                <td class="text-center">{{ $user->name }}</td>
-                                <td class="text-center">{{ $user->tanggal_lahir }}</td>
-                                <td class="text-center">{{ $user->email }}</td>
+                                <td class="text-center">{{ $category->name }}</td>
+                                <td class="text-center">{{ $category->description }}</td>
                                 <td class="text-center">
-                                    <a href="/master-data/users/edit/{{ $user->id }}" class="btn btn-primary">
+                                    <a href="/master-data/category/edit/{{ $category->id }}" class="btn btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    <a href="/master-data/users/delete/{{ $user->id }}" class="btn btn-danger">
+                                    <a href="/master-data/category/delete/{{ $category->id }}" class="btn btn-danger">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -58,7 +56,7 @@
             </div>
         </div>
         <div class="col-12 mt-3 d-flex justify-content-end align-items-center">
-            {{ $users->links() }}
+            {{ $categories->links() }}
         </div>
     </div>
 </div>

@@ -31,7 +31,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a href="/" class="nav-link @if ($menu == 'Dashboard') active @endif">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -39,8 +39,8 @@
                     </a>
                 </li>
                 <li class="nav-header">SETTINGS</li>
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                <li class="nav-item @if ($menu == 'Master Data') menu-open @endif">
+                    <a href="#" class="nav-link @if ($menu == 'Master Data') active @endif">
                         <i class="nav-icon fas fa-database"></i>
                         <p>Master Data
                             <i class="right fas fa-angle-left"></i>
@@ -48,9 +48,17 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/master-data/users" class="nav-link active">
+                            <a href="/master-data/users"
+                                class="nav-link @if ($sub_menu == 'Users') active @endif">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Users</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/master-data/category"
+                                class="nav-link @if ($sub_menu == 'Kategori') active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kategori</p>
                             </a>
                         </li>
                     </ul>

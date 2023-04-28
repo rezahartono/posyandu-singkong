@@ -29,6 +29,8 @@ class AuthController extends Controller
                 if (Auth::attempt($request->only('email', 'password'))) {
                     $request->session()->regenerate();
 
+                    session(['user' => Auth::user()]);
+
                     return redirect()->intended('/');
                 } else {
                     Alert::error('Error Occured!', 'can\'t find user');
@@ -40,6 +42,22 @@ class AuthController extends Controller
             }
         } else {
             return view('authentication.login');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            Auth::logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return redirect('/');
+        } catch (\Throwable $th) {
+            Alert::error('Error Occured!', $th);
+            return back();
         }
     }
 }

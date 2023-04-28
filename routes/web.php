@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\MasterData\KategoriController;
 use App\Http\Controllers\Web\MasterData\UsersController;
 
 /*
@@ -21,6 +22,7 @@ Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware('auth')->group(function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index']);
     Route::prefix('master-data')->group(function () {
         Route::prefix('users')->group(function () {
@@ -28,6 +30,16 @@ Route::middleware('auth')->group(function () {
             Route::get('create', [UsersController::class, 'create']);
             Route::post('create', [UsersController::class, 'create']);
             Route::get('delete/{id}', [UsersController::class, 'delete']);
+            Route::get('edit/{id}', [UsersController::class, 'update']);
+            Route::post('edit/{id}', [UsersController::class, 'update']);
+        });
+        Route::prefix('category')->group(function () {
+            Route::get('/', [KategoriController::class, 'index']);
+            Route::get('create', [KategoriController::class, 'create']);
+            Route::post('create', [KategoriController::class, 'create']);
+            Route::get('delete/{id}', [KategoriController::class, 'delete']);
+            Route::get('edit/{id}', [KategoriController::class, 'update']);
+            Route::post('edit/{id}', [KategoriController::class, 'update']);
         });
     });
 });

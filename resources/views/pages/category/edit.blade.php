@@ -1,0 +1,55 @@
+@extends('layouts.template')
+
+@section('content')
+    <section class="content">
+        <form action="/master-data/category/edit/{{ $kategori->id }}" method="POST" enctype="multipart/form-data">
+            @method('POST')
+            @csrf
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Masukan Nama"
+                            value="{{ $kategori->name }}">
+                        @error('name')
+                            <div class="alert alert-danger mt-2">
+                                <ul>
+                                    <li class="text-red-600">{{ $message }}</li>
+                                </ul>
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Deskripsi</label>
+                        <textarea class="form-control" id="description" name="description" rows="3">{{ $kategori->description }}</textarea>
+
+                        @error('name')
+                            <div class="alert alert-danger mt-2">
+                                <ul>
+                                    <li class="text-red-600">{{ $message }}</li>
+                                </ul>
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Save</button>
+                </div>
+            </div>
+        </form>
+    </section>
+@endsection
+
+@section('scripts')
+    <script>
+        function chooseFile() {
+            var fileInput = document.getElementById("photo_profile");
+            fileInput.value = "";
+            fileInput.click();
+
+            if (fileInput.value != null || fileInput.value != "") {
+                readURL()
+            }
+        }
+    </script>
+@endsection
