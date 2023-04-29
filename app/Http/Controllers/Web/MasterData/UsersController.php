@@ -21,7 +21,7 @@ class UsersController extends Controller
             "menu" => "Master Data",
             "sub_menu" => "Users",
         ];
-        return view('pages.users.show', $data);
+        return view('pages.master_data.users.show', $data);
     }
 
     public function create(Request $request)
@@ -76,7 +76,7 @@ class UsersController extends Controller
                 "menu" => "Master Data",
                 "sub_menu" => "Users",
             ];
-            return view('pages.users.create', $data);
+            return view('pages.master_data.users.create', $data);
         }
     }
 
@@ -134,7 +134,7 @@ class UsersController extends Controller
                 "sub_menu" => "Users",
                 "user" => User::where('id', $id)->first(),
             ];
-            return view('pages.users.edit', $data);
+            return view('pages.master_data.users.edit', $data);
         }
     }
 

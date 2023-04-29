@@ -5,11 +5,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('/dist/admin-lte') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                    alt="User Image">
+                <img src="{{ Session::get('user')->photo_profile }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ Session::get('user')->name }}</a>
             </div>
         </div>
 
@@ -38,31 +37,47 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">SETTINGS</li>
-                <li class="nav-item @if ($menu == 'Master Data') menu-open @endif">
-                    <a href="#" class="nav-link @if ($menu == 'Master Data') active @endif">
-                        <i class="nav-icon fas fa-database"></i>
-                        <p>Master Data
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/master-data/users"
-                                class="nav-link @if ($sub_menu == 'Users') active @endif">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Users</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/master-data/category"
-                                class="nav-link @if ($sub_menu == 'Kategori') active @endif">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Kategori</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @if (Session::get('user')->fl_admin == 'Y')
+                    <li class="nav-header">SETTINGS</li>
+                    <li class="nav-item @if ($menu == 'Master Data') menu-open @endif">
+                        <a href="#" class="nav-link @if ($menu == 'Master Data') active @endif">
+                            <i class="nav-icon fas fa-database"></i>
+                            <p>Master Data
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/master-data/users"
+                                    class="nav-link @if ($sub_menu == 'Users') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Users</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/master-data/category"
+                                    class="nav-link @if ($sub_menu == 'Kategori') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kategori</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/master-data/kecamatan"
+                                    class="nav-link @if ($sub_menu == 'Kecamatan') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kecamatan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/master-data/kelurahan"
+                                    class="nav-link @if ($sub_menu == 'Kelurahan') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kelurahan</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

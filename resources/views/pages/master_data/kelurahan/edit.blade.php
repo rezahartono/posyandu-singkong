@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content">
-        <form action="/master-data/category/edit/{{ $kategori->id }}" method="POST" enctype="multipart/form-data">
+        <form action="/master-data/kelurahan/edit/{{ $kelurahan->id }}" method="POST">
             @method('POST')
             @csrf
             <div class="row">
@@ -10,7 +10,7 @@
                     <div class="form-group">
                         <label for="name">Nama</label>
                         <input type="text" name="name" class="form-control" id="name" placeholder="Masukan Nama"
-                            value="{{ $kategori->name }}">
+                            value="{{ $kelurahan->name }}">
                         @error('name')
                             <div class="alert alert-danger mt-2">
                                 <ul>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
-                        <textarea class="form-control" id="description" name="description" rows="3">{{ $kategori->description }}</textarea>
+                        <textarea class="form-control" id="description" name="description" rows="3">{{ $kelurahan->description }}</textarea>
 
                         @error('name')
                             <div class="alert alert-danger mt-2">
@@ -38,18 +38,4 @@
             </div>
         </form>
     </section>
-@endsection
-
-@section('scripts')
-    <script>
-        function chooseFile() {
-            var fileInput = document.getElementById("photo_profile");
-            fileInput.value = "";
-            fileInput.click();
-
-            if (fileInput.value != null || fileInput.value != "") {
-                readURL()
-            }
-        }
-    </script>
 @endsection

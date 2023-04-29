@@ -19,7 +19,7 @@ class KategoriController extends Controller
             "menu" => "Master Data",
             "sub_menu" => "Kategori",
         ];
-        return view('pages.category.show', $data);
+        return view('pages.master_data.category.show', $data);
     }
 
     public function create(Request $request)
@@ -54,7 +54,7 @@ class KategoriController extends Controller
                 "menu" => "Master Data",
                 "sub_menu" => "Kategori",
             ];
-            return view('pages.category.create', $data);
+            return view('pages.master_data.category.create', $data);
         }
     }
 
@@ -63,7 +63,7 @@ class KategoriController extends Controller
         if ($request->method() == "POST") {
             // dd($request);
             $validator = Validator::make($request->all(), [
-                'name' => 'required|max:150|unique:kategori,name',
+                'name' => 'required|max:150',
                 'description' => 'nullable',
             ]);
 
@@ -90,7 +90,7 @@ class KategoriController extends Controller
                 "sub_menu" => "Kategori",
                 "kategori" => Kategori::where('id', $id)->first(),
             ];
-            return view('pages.category.edit', $data);
+            return view('pages.master_data.category.edit', $data);
         }
     }
 

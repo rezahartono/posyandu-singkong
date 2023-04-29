@@ -39,17 +39,3 @@
         </form>
     </section>
 @endsection
-
-@section('scripts')
-    <script>
-        function chooseFile() {
-            var fileInput = document.getElementById("photo_profile");
-            fileInput.value = "";
-            fileInput.click();
-
-            if (fileInput.value != null || fileInput.value != "") {
-                readURL()
-            }
-        }
-    </script>
-@endsection
