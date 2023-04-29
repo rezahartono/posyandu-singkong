@@ -101,9 +101,9 @@ class UsiaController extends Controller
             $isDeleted = $usia->delete();
 
             if ($isDeleted) {
-                Alert::success("Success!", "Puskesmas Telah berhasil dihapus");
+                Alert::success("Success!", "Usia Telah berhasil dihapus");
             } else {
-                Alert::error("Terjadi Kesalahan!", "Gagal menghapus kelurahan");
+                Alert::error("Terjadi Kesalahan!", "Gagal menghapus usia");
             }
             return back();
         }

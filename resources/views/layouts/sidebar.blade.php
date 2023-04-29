@@ -98,6 +98,23 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item @if ($menu == 'Setup') menu-open @endif">
+                        <a href="#" class="nav-link @if ($menu == 'Setup') active @endif">
+                            <i class="nav-icon fas fa-database"></i>
+                            <p>Setup
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/setup/generate-number"
+                                    class="nav-link @if ($sub_menu == 'Generate Number') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Generate Number</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
         </nav>

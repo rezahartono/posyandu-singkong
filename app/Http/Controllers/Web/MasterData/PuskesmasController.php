@@ -26,7 +26,7 @@ class PuskesmasController extends Controller
     {
         if ($request->method() == "POST") {
             $validator = Validator::make($request->all(), [
-                'name' => 'required|max:150|unique:kelurahan,name',
+                'name' => 'required|max:150|unique:puskesmas,name',
                 'description' => 'nullable',
             ]);
 
@@ -103,7 +103,7 @@ class PuskesmasController extends Controller
             if ($isDeleted) {
                 Alert::success("Success!", "Puskesmas Telah berhasil dihapus");
             } else {
-                Alert::error("Terjadi Kesalahan!", "Gagal menghapus kelurahan");
+                Alert::error("Terjadi Kesalahan!", "Gagal menghapus puskesmas");
             }
             return back();
         }
