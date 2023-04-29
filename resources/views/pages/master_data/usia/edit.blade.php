@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="name">Nama</label>
+                        <label for="name">Usia</label>
                         <input type="text" name="name" class="form-control" id="name" placeholder="Masukan Nama"
                             value="{{ $usia->name }}">
                         @error('name')
