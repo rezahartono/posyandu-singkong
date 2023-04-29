@@ -5,22 +5,21 @@ namespace App\Http\Controllers\Web\MasterData;
 use App\Helpers\CommonUtil;
 use App\Helpers\DateUtil;
 use App\Http\Controllers\Controller;
-use App\Models\Kelurahan;
+use App\Models\Usia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class KelurahanController extends Controller
+class UsiaController extends Controller
 {
     public function index()
     {
         $data = [
-            "title" => "Show Kelurahan",
+            "title" => "Show Usia",
             "menu" => "Master Data",
-            "sub_menu" => "Kelurahan",
+            "sub_menu" => "Usia",
         ];
-        return view('pages.master_data.kelurahan.show', $data);
+        return view('pages.master_data.usia.show', $data);
     }
 
     public function create(Request $request)
@@ -37,25 +36,25 @@ class KelurahanController extends Controller
                 return back();
             }
 
-            $kelurahan = new Kelurahan();
-            $kelurahan->id = CommonUtil::generateId();
-            $kelurahan->name = $request->name;
-            $kelurahan->description = $request->description;
-            $kelurahan->created_at = DateUtil::now();
-            $kelurahan->updated_at = DateUtil::now();
-            $kelurahan->save();
+            $usia = new Usia();
+            $usia->id = CommonUtil::generateId();
+            $usia->name = $request->name;
+            $usia->description = $request->description;
+            $usia->created_at = DateUtil::now();
+            $usia->updated_at = DateUtil::now();
+            $usia->save();
 
-            if ($kelurahan != null) {
-                Alert::success("Success", "Kelurahan has been created");
-                return redirect('/master-data/kelurahan')->withHeaders(['referer' => '']);
+            if ($usia != null) {
+                Alert::success("Success", "Usia has been created");
+                return redirect('/master-data/usia')->withHeaders(['referer' => '']);
             }
         } else {
             $data = [
-                "title" => "Create Kelurahan",
+                "title" => "Create Usia",
                 "menu" => "Master Data",
-                "sub_menu" => "Kelurahan",
+                "sub_menu" => "Usia",
             ];
-            return view('pages.master_data.kelurahan.create', $data);
+            return view('pages.master_data.usia.create', $data);
         }
     }
 
@@ -74,35 +73,35 @@ class KelurahanController extends Controller
                 return back();
             }
 
-            $kelurahan = Kelurahan::where('id', $id)->first();
-            $kelurahan->name = $request->name;
-            $kelurahan->description = $request->description;
-            $kelurahan->updated_at = DateUtil::now();
-            $kelurahan->update();
+            $usia = Usia::where('id', $id)->first();
+            $usia->name = $request->name;
+            $usia->description = $request->description;
+            $usia->updated_at = DateUtil::now();
+            $usia->update();
 
-            if ($kelurahan != null) {
-                Alert::success("Success", "Kelurahan has been updated");
-                return redirect('/master-data/kelurahan')->withHeaders(['referer' => '']);
+            if ($usia != null) {
+                Alert::success("Success", "Usia has been updated");
+                return redirect('/master-data/usia')->withHeaders(['referer' => '']);
             }
         } else {
             $data = [
-                "title" => "Edit Kelurahan",
+                "title" => "Edit Usia",
                 "menu" => "Master Data",
-                "sub_menu" => "Kelurahan",
-                "kelurahan" => Kelurahan::where('id', $id)->first(),
+                "sub_menu" => "Usia",
+                "usia" => Usia::where('id', $id)->first(),
             ];
-            return view('pages.master_data.kelurahan.edit', $data);
+            return view('pages.master_data.usia.edit', $data);
         }
     }
 
     public function delete($id)
     {
         if ($id != null) {
-            $kelurahan = Kelurahan::where('id', $id)->first();
-            $isDeleted = $kelurahan->delete();
+            $usia = Usia::where('id', $id)->first();
+            $isDeleted = $usia->delete();
 
             if ($isDeleted) {
-                Alert::success("Success!", "Kelurahan Telah berhasil dihapus");
+                Alert::success("Success!", "Puskesmas Telah berhasil dihapus");
             } else {
                 Alert::error("Terjadi Kesalahan!", "Gagal menghapus kelurahan");
             }

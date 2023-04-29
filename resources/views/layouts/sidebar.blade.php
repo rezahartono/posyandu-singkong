@@ -62,6 +62,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="/master-data/kelurahan"
+                                    class="nav-link @if ($sub_menu == 'Kelurahan') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kelurahan</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="/master-data/kecamatan"
                                     class="nav-link @if ($sub_menu == 'Kecamatan') active @endif">
                                     <i class="far fa-circle nav-icon"></i>
@@ -69,10 +76,17 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/master-data/kelurahan"
-                                    class="nav-link @if ($sub_menu == 'Kelurahan') active @endif">
+                                <a href="/master-data/kota"
+                                    class="nav-link @if ($sub_menu == 'Kota') active @endif">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Kelurahan</p>
+                                    <p>Kabupaten/Kota</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/master-data/puskesmas"
+                                    class="nav-link @if ($sub_menu == 'Puskesmas') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Puskesmas</p>
                                 </a>
                             </li>
                         </ul>

@@ -7,7 +7,10 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\MasterData\KategoriController;
 use App\Http\Controllers\Web\MasterData\KecamatanController;
 use App\Http\Controllers\Web\MasterData\KelurahanController;
+use App\Http\Controllers\Web\MasterData\KotaController;
+use App\Http\Controllers\Web\MasterData\PuskesmasController;
 use App\Http\Controllers\Web\MasterData\UsersController;
+use App\Http\Controllers\Web\MasterData\UsiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index']);
+    //master data route
     Route::middleware('isadmin')->prefix('master-data')->group(function () {
         Route::prefix('users')->group(function () {
             Route::get('/', [UsersController::class, 'index']);
@@ -58,6 +62,30 @@ Route::middleware('auth')->group(function () {
             Route::get('delete/{id}', [KelurahanController::class, 'delete']);
             Route::get('edit/{id}', [KelurahanController::class, 'update']);
             Route::post('edit/{id}', [KelurahanController::class, 'update']);
+        });
+        Route::prefix('kota')->group(function () {
+            Route::get('/', [KotaController::class, 'index']);
+            Route::get('create', [KotaController::class, 'create']);
+            Route::post('create', [KotaController::class, 'create']);
+            Route::get('delete/{id}', [KotaController::class, 'delete']);
+            Route::get('edit/{id}', [KotaController::class, 'update']);
+            Route::post('edit/{id}', [KotaController::class, 'update']);
+        });
+        Route::prefix('puskesmas')->group(function () {
+            Route::get('/', [PuskesmasController::class, 'index']);
+            Route::get('create', [PuskesmasController::class, 'create']);
+            Route::post('create', [PuskesmasController::class, 'create']);
+            Route::get('delete/{id}', [PuskesmasController::class, 'delete']);
+            Route::get('edit/{id}', [PuskesmasController::class, 'update']);
+            Route::post('edit/{id}', [PuskesmasController::class, 'update']);
+        });
+        Route::prefix('usia')->group(function () {
+            Route::get('/', [UsiaController::class, 'index']);
+            Route::get('create', [UsiaController::class, 'create']);
+            Route::post('create', [UsiaController::class, 'create']);
+            Route::get('delete/{id}', [UsiaController::class, 'delete']);
+            Route::get('edit/{id}', [UsiaController::class, 'update']);
+            Route::post('edit/{id}', [UsiaController::class, 'update']);
         });
     });
 });
