@@ -89,6 +89,13 @@
                                     <p>Puskesmas</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/master-data/usia"
+                                    class="nav-link @if ($sub_menu == 'Usia') active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Usia</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif
