@@ -37,7 +37,7 @@ class GenerateNumberController extends Controller
 
             $number = new GenerateNumber();
             $number->id = CommonUtil::generateId();
-            $number->number_format = $request->number + "-";
+            $number->number_format = $request->number;
             if ($request->has('active')) {
                 $updatedNumber = GenerateNumber::where('active', 'Y')->first();
 
@@ -79,9 +79,9 @@ class GenerateNumberController extends Controller
             }
 
             $number = GenerateNumber::where('id', $id)->first();
-            $number->number_format = $request->number + "-";
+            $number->number_format = $request->number;
             if ($request->has('active')) {
-                $updatedNumber = GenerateNumber::where('active', 'Y')->first();
+                $updatedNumber = GenerateNumber::where('active', 'Y')->whereNot('id', $id)->first();
 
                 if ($updatedNumber != null) {
                     $updatedNumber->active = "N";

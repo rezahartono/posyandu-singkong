@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content">
-        <form action="/setup/generate-number/create" method="POST">
+        <form action="/data_posyandu/edit/{{ $datapos->id }}" method="POST">
             @method('POST')
             @csrf
             <div class="row">
@@ -11,15 +11,14 @@
                         <label for="number">Format Nomor</label>
                         <div class="input-group mb-3">
                             <input type="text" name="number" class="form-control" id="number"
-                                placeholder="Masukan Format Nomor" value="{{ old('number') }}">
+                                placeholder="Masukan Format Nomor" value="{{ $number->format_number }}">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">-0001</span>
                             </div>
                         </div>
 
                         <small class="form-text text-muted">
-                            <strong class="text-danger">*</strong>Gunakan tanda ( - ) sebagai pemisah contoh:
-                            <strong>NUM-ABCD</strong>
+                            <strong class="text-danger">*</strong>Gunakan tanda ( - ) sebagai pemisah
                         </small>
                         @error('number')
                             <div class="alert alert-danger mt-2">
@@ -31,7 +30,7 @@
                     </div>
                     <div class="form-group form-check">
                         <input class="form-check-input" name="active" type="checkbox" value="{{ old('active') }}"
-                            id="active">
+                            id="active" @if ($number->active == 'Y') checked @endif>
                         <label class="form-check-label" for="active">
                             Aktif
                         </label>

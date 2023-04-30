@@ -45,7 +45,7 @@
         </div>
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -73,7 +73,7 @@
         @include('layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper px-3 mb-5">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
@@ -89,7 +89,7 @@
             @yield('content')
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
+        <footer class="main-footer fixed-bottom">
             <div>
                 <b>Version</b> 0.0.1
             </div>
@@ -109,9 +109,9 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('/dist/admin-lte') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
-    <script src="{{ asset('/dist/admin-lte') }}/plugins/chart.js/Chart.min.js"></script>
+    {{-- <script src="{{ asset('/dist/admin-lte') }}/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
-    <script src="{{ asset('/dist/admin-lte') }}/plugins/sparklines/sparkline.js"></script>
+    <script src="{{ asset('/dist/admin-lte') }}/plugins/sparklines/sparkline.js"></script> --}}
     <!-- JQVMap -->
     <script src="{{ asset('/dist/admin-lte') }}/plugins/jqvmap/jquery.vmap.min.js"></script>
     <script src="{{ asset('/dist/admin-lte') }}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
@@ -132,7 +132,7 @@
     <!-- AdminLTE for demo purposes -->
     {{-- <script src="{{ asset('/dist/admin-lte') }}/dist/js/demo.js"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('/dist/admin-lte') }}/dist/js/pages/dashboard.js"></script>
+    {{-- <script src="{{ asset('/dist/admin-lte') }}/dist/js/pages/dashboard.js"></script> --}}
     <script src="{{ asset('/js/app.js') }}"></script>
     <script>
         function showAlert(data) {

@@ -2,11 +2,13 @@
     <div class="row bg-white p-3 rounded rounded-5 shadow shadow-sm" style="max-height: 100%">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <div class="input-group w-50">
-                <div class="w-25">
+                <div class="mr-3">
                     <select class="form-control w-auto input-group-prepend rounded rounded-0" wire:model="filter"
                         id="filter">
-                        <option value="number" selected>Format Nomor</option>
-                        <option value="active">Aktif</option>
+                        <option value="nomor" selected>Nomor</option>
+                        <option value="nama_posyandu">Nama Posyandu</option>
+                        <option value="kategori">Kategori Posyandu</option>
+                        <option value="nama_pasien">Nama Pasien</option>
                     </select>
                 </div>
                 <input type="search" wire:model="search" class="form-control border-right-0 rounded-left rounded-5"
@@ -16,8 +18,7 @@
                 </span>
             </div>
             <div class="ms-auto">
-                <a href="generate-number/create" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Generate
-                    Nomor</a>
+                <a href="data-posyandu/create" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Buat Data</a>
             </div>
         </div>
         <div class="col-12 mt-3">
@@ -25,28 +26,25 @@
                 <table class="table table-bordered rounded rounded-5">
                     <thead class="bg-primary text-white">
                         <tr>
-                            <th class="text-center" scope="col" width="10%">No</th>
-                            <th class="text-center" scope="col">Format Nomor</th>
-                            <th class="text-center" scope="col">Aktif</th>
+                            <th class="text-center" scope="col">Nomor</th>
+                            <th class="text-center" scope="col">Nama Posyandu</th>
+                            <th class="text-center" scope="col">Kategori</th>
+                            <th class="text-center" scope="col">Nama Pasien</th>
                             <th class="text-center" scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $idx = 1;
-                        @endphp
-
-                        @foreach ($numbers as $number)
+                        @foreach ($data_posyandu as $datapos)
                             <tr>
-                                <th class="text-center" scope="row">{{ $idx++ }}</th>
-                                <td class="text-center">{{ $number->number_format }}-0001</td>
-                                <td class="text-center">{{ $number->active }}</td>
+                                <th class="text-center" scope="row">{{ $datapos->nomor }}</th>
+                                <td class="text-center">{{ $datapos->nama_posyandu }}</td>
+                                <td class="text-center">{{ $datapos->kategori }}</td>
+                                <td class="text-center">{{ $datapos->nama_pasien }}</td>
                                 <td class="text-center">
-                                    <a href="generate-number/edit/{{ $number->id }}" class="btn btn-primary">
+                                    <a href="data-posyandu/edit/{{ $u->id }}" class="btn btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
-
-                                    <a href="generate-number/delete/{{ $number->id }}" class="btn btn-danger">
+                                    <a href="data-posyandu/delete/{{ $u->id }}" class="btn btn-danger">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -57,7 +55,7 @@
             </div>
         </div>
         <div class="col-12 mt-3 d-flex justify-content-end align-items-center">
-            {{ $numbers->links() }}
+            {{ $data_posyandu->links() }}
         </div>
     </div>
 </div>

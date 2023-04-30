@@ -37,6 +37,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/data-posyandu" class="nav-link @if ($menu == 'Data Posyandu') active @endif">
+                        <i class="nav-icon fas fa-address-book"></i>
+                        <p>
+                            Data Posyandu
+                        </p>
+                    </a>
+                </li>
                 @if (Session::get('user')->fl_admin == 'Y')
                     <li class="nav-header">SETTINGS</li>
                     <li class="nav-item @if ($menu == 'Master Data') menu-open @endif">
@@ -100,7 +108,7 @@
                     </li>
                     <li class="nav-item @if ($menu == 'Setup') menu-open @endif">
                         <a href="#" class="nav-link @if ($menu == 'Setup') active @endif">
-                            <i class="nav-icon fas fa-database"></i>
+                            <i class="nav-icon fas fa-cogs"></i>
                             <p>Setup
                                 <i class="right fas fa-angle-left"></i>
                             </p>

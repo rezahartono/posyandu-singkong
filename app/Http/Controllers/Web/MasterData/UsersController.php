@@ -55,7 +55,7 @@ class UsersController extends Controller
 
                 $extension = $file->getClientOriginalExtension();
                 $fileName = $file->getClientOriginalName();
-                $path = Storage::putFileAs('uploads', $file, $fileName . $extension,);
+                $path = Storage::putFileAs('uploads', $file, $fileName);
                 $user->photo_profile = $path;
             }
             if ($request->has('fl_admin')) {
@@ -113,7 +113,7 @@ class UsersController extends Controller
 
                 $extension = $file->getClientOriginalExtension();
                 $fileName = $file->getClientOriginalName();
-                $path = Storage::putFileAs('/uploads', $file, $fileName . '.' . $extension,);
+                $path = Storage::putFileAs('/uploads', $file, $fileName);
                 $user->photo_profile = $path;
             }
             if ($request->has('fl_admin')) {

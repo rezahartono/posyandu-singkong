@@ -25,17 +25,17 @@ class CommonUtil
             $numInt = (int)$numString;
 
             if ($numInt < 10) {
-                $number .= "000" . strval($numInt + 1);
+                $number .= "-000" . strval($numInt + 1);
             } else
             if ($numInt >= 10) {
-                $number .= "00" . strval($numInt + 1);
+                $number .= "-00" . strval($numInt + 1);
             } else if ($numInt >= 100) {
-                $number .= "0" . strval($numInt + 1);
+                $number .= "-0" . strval($numInt + 1);
             } else {
-                $number .= strval($numInt + 1);
+                $number .=  "-" . strval($numInt + 1);
             }
         } else {
-            $number .= "0001";
+            $number .= "-0001";
         }
 
         return $number;

@@ -15,9 +15,35 @@ class DateUtil
     {
         $months = array();
 
+        $bulan = array(
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        );
+
         for ($i = 1; $i <= 12; $i++) {
-            $month = date('F', mktime(0, 0, 0, $i, 1));
+            $month = $bulan[date('n', mktime(0, 0, 0, $i, 1))];
             array_push($months, $month);
         }
+
+        return $months;
+    }
+
+    public static function listYear($start, $end)
+    {
+        $years = array();
+        for ($year = $start; $year <= $end; $year++) {
+            $years[] = strval($year);
+        }
+        return $years;
     }
 }

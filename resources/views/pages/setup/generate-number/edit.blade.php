@@ -11,14 +11,15 @@
                         <label for="number">Format Nomor</label>
                         <div class="input-group mb-3">
                             <input type="text" name="number" class="form-control" id="number"
-                                placeholder="Masukan Format Nomor" value="{{ $number->format_number }}">
+                                placeholder="Masukan Format Nomor" value="{{ $number->number_format }}">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">-0001</span>
                             </div>
                         </div>
 
                         <small class="form-text text-muted">
-                            <strong class="text-danger">*</strong>Gunakan tanda ( - ) sebagai pemisah
+                            <strong class="text-danger">*</strong>Gunakan tanda ( - ) sebagai pemisah contoh:
+                            <strong>NUM-ABCD</strong>
                         </small>
                         @error('number')
                             <div class="alert alert-danger mt-2">

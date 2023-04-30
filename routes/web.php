@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\MasterData\KotaController;
 use App\Http\Controllers\Web\MasterData\PuskesmasController;
 use App\Http\Controllers\Web\MasterData\UsersController;
 use App\Http\Controllers\Web\MasterData\UsiaController;
+use App\Http\Controllers\Web\Module\DataPosyanduController;
 use App\Http\Controllers\Web\Setup\GenerateNumberController;
 
 /*
@@ -30,6 +31,14 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index']);
+    Route::prefix('data-posyandu')->group(function () {
+        Route::get('/', [DataPosyanduController::class, 'index']);
+        Route::get('create', [DataPosyanduController::class, 'create']);
+        Route::post('create', [DataPosyanduController::class, 'create']);
+        Route::get('delete/{id}', [DataPosyanduController::class, 'delete']);
+        Route::get('edit/{id}', [DataPosyanduController::class, 'update']);
+        Route::post('edit/{id}', [DataPosyanduController::class, 'update']);
+    });
     //master data route
     Route::middleware('isadmin')->group(function () {
         Route::prefix('master-data')->group(function () {
