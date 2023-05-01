@@ -38,13 +38,13 @@
                             <tr>
                                 <th class="text-center" scope="row">{{ $datapos->nomor }}</th>
                                 <td class="text-center">{{ $datapos->nama_posyandu }}</td>
-                                <td class="text-center">{{ $datapos->kategori }}</td>
+                                <td class="text-center">{{ $datapos->kategoriDetail->name }}</td>
                                 <td class="text-center">{{ $datapos->nama_pasien }}</td>
                                 <td class="text-center">
-                                    <a href="data-posyandu/edit/{{ $u->id }}" class="btn btn-primary">
+                                    <a href="data-posyandu/edit/{{ $datapos->id }}" class="btn btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="data-posyandu/delete/{{ $u->id }}" class="btn btn-danger">
+                                    <a href="data-posyandu/delete/{{ $datapos->id }}" class="btn btn-danger">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

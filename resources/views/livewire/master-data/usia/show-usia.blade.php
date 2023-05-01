@@ -5,7 +5,7 @@
                 <div class="w-25">
                     <select class="form-control w-auto input-group-prepend rounded rounded-0" wire:model="filter"
                         id="filter">
-                        <option value="name" selected>Nama</option>
+                        <option value="usia" selected>Usia</option>
                         <option value="description">Deskripsi</option>
                     </select>
                 </div>

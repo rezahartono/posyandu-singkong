@@ -6,6 +6,7 @@ use App\Helpers\CommonUtil;
 use App\Helpers\DateUtil;
 use App\Http\Controllers\Controller;
 use App\Models\DataPosyandu;
+use App\Models\JenisKelamin;
 use App\Models\Kategori;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
@@ -31,33 +32,125 @@ class DataPosyanduController extends Controller
     public function create(Request $request)
     {
         if ($request->method() == "POST") {
+            // dd($request);
             $validator = Validator::make($request->all(), [
-                'name' => 'required|max:150|unique:kelurahan,name',
-                'description' => 'nullable',
+                'nama_posyandu' => 'required|max:150',
+                'rt_rw' => 'nullable',
+                'puskesmas' => 'required',
+                'kelurahan' => 'required',
+                'kecamatan' => 'required',
+                'kota' => 'required',
+                'bulan' => 'required',
+                'tahun' => 'required',
+                'tanggal_dibuat' => 'required|date',
+                'kategori' => 'required',
+                'nomor' => 'required',
+                'nama_pasien' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required|date',
+                'jenis_kelamin' => 'required|max:1',
+                'usia' => 'required',
+                'nama_orangtua' => 'required',
+                'rt_pasien' => 'required',
+                'rw_pasien' => 'required',
+                'berat_badan' => 'required',
+                'tinggi_badan' => 'required',
+                'kb' => 'required',
+                'lingkar_kepala' => 'required',
+                'lingkar_lengan' => 'required',
+                'jumlah_kader' => 'required',
+                'jumlah_kader_aktif' => 'required',
             ]);
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                Alert::error('Error Occured!', $validator->messages());
                 return back();
             }
 
             $datapos = new DataPosyandu();
             $datapos->id = CommonUtil::generateId();
-            $datapos->created_at = DateUtil::now();
+            $datapos->nomor = $request->nomor;
+            $datapos->nama_posyandu = $request->nama_posyandu;
+            $datapos->alamat_posyandu = $request->rt_rw;
+            $datapos->kelurahan = $request->kelurahan;
+            $datapos->kecamatan = $request->kecamatan;
+            $datapos->kota = $request->kota;
+            $datapos->puskesmas = $request->puskesmas;
+            $datapos->bulan = $request->bulan;
+            $datapos->tahun = $request->tahun;
+            $datapos->kategori = $request->kategori;
+            $datapos->nama_pasien = $request->nama_pasien;
+            $datapos->tempat_lahir = $request->tempat_lahir;
+            $datapos->tanggal_lahir = $request->tanggal_lahir;
+            $datapos->jenis_kelamin = $request->jenis_kelamin;
+            $datapos->usia = $request->usia;
+            $datapos->nama_orangtua = $request->nama_orangtua;
+            $datapos->rt = $request->rt_pasien;
+            $datapos->rw = $request->rw_pasien;
+            $datapos->berat_badan = $request->berat_badan;
+            $datapos->tinggi_badan = $request->tinggi_badan;
+            $datapos->kb = $request->kb;
+            $datapos->lingkar_kepala = $request->lingkar_kepala;
+            $datapos->lingkar_lengan = $request->lingkar_lengan;
+            $datapos->alamat_pasien = "";
+            $datapos->kader = $request->jumlah_kader;
+            if ($request->has('fl_o')) {
+                $datapos->fl_o = "Y";
+            }
+            if ($request->has('fl_naik')) {
+                $datapos->fl_naik = "Y";
+            }
+            if ($request->has('fl_turun')) {
+                $datapos->fl_turun = "Y";
+            }
+            if ($request->has('fl_tetap')) {
+                $datapos->fl_tetap = "Y";
+            }
+            if ($request->has('fl_hijau')) {
+                $datapos->fl_hijau = "Y";
+            }
+            if ($request->has('fl_kuning')) {
+                $datapos->fl_kuning = "Y";
+            }
+            if ($request->has('fl_bgm')) {
+                $datapos->fl_bgm = "Y";
+            }
+            if ($request->has('fl_pus')) {
+                $datapos->fl_pus = "Y";
+            }
+            if ($request->has('fl_wus')) {
+                $datapos->fl_wus = "Y";
+            }
+            if ($request->has('fl_ibu_hamil')) {
+                $datapos->fl_ibu_hamil = "Y";
+            }
+            if ($request->has('fl_menyusui')) {
+                $datapos->fl_menyusui = "Y";
+            }
+            if ($request->has('fl_lansia')) {
+                $datapos->fl_lansia = "Y";
+            }
+            if ($request->has('fl_lainnya')) {
+                $datapos->fl_lainnya = "Y";
+                $datapos->lainnya = $request->lainnya;
+            }
+            $datapos->kader_aktif = $request->jumlah_kader_aktif;
+            $datapos->created_at = $request->tanggal_dibuat;
             $datapos->updated_at = DateUtil::now();
             $datapos->save();
 
             if ($datapos != null) {
                 Alert::success("Success", "Data Posyandu has been created");
-                return redirect('/data-posyandu')->withHeaders(['referer' => '']);
+                return redirect('data-posyandu')->withHeaders(['referer' => '']);
             }
         } else {
             $form_data = [
                 "nomor" => CommonUtil::generateNumber(),
                 "jenis_kelamin" => [
-                    "Laki-Laki",
-                    "Perempuan",
+                    new JenisKelamin("L", "Laki-Laki"),
+                    new JenisKelamin("P", "Perempuan"),
                 ],
                 "puskesmas" => Puskesmas::all(),
                 "kelurahan" => Kelurahan::all(),
@@ -84,34 +177,136 @@ class DataPosyanduController extends Controller
         if ($request->method() == "POST") {
             // dd($request);
             $validator = Validator::make($request->all(), [
-                'name' => 'required|max:150',
-                'description' => 'nullable',
+                'nama_posyandu' => 'required|max:150',
+                'rt_rw' => 'nullable',
+                'puskesmas' => 'required',
+                'kelurahan' => 'required',
+                'kecamatan' => 'required',
+                'kota' => 'required',
+                'bulan' => 'required',
+                'tahun' => 'required',
+                'kategori' => 'required',
+                'nomor' => 'required',
+                'nama_pasien' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required|date',
+                'jenis_kelamin' => 'required|max:1',
+                'usia' => 'required',
+                'nama_orangtua' => 'required',
+                'rt_pasien' => 'required',
+                'rw_pasien' => 'required',
+                'berat_badan' => 'required',
+                'tinggi_badan' => 'required',
+                'kb' => 'required',
+                'lingkar_kepala' => 'required',
+                'lingkar_lengan' => 'required',
+                'jumlah_kader' => 'required',
+                'jumlah_kader_aktif' => 'required',
             ]);
-
             //if validation fails
             if ($validator->fails()) {
                 Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
                 return back();
             }
 
-            $usia = DataPosyandu::where('id', $id)->first();
-            $usia->name = $request->name;
-            $usia->description = $request->description;
-            $usia->updated_at = DateUtil::now();
-            $usia->update();
+            $datapos = DataPosyandu::where('id', $id)->first();
+            $datapos->nomor = $request->nomor;
+            $datapos->nama_posyandu = $request->nama_posyandu;
+            $datapos->alamat_posyandu = $request->rt_rw;
+            $datapos->kelurahan = $request->kelurahan;
+            $datapos->kecamatan = $request->kecamatan;
+            $datapos->kota = $request->kota;
+            $datapos->puskesmas = $request->puskesmas;
+            $datapos->bulan = $request->bulan;
+            $datapos->tahun = $request->tahun;
+            $datapos->kategori = $request->kategori;
+            $datapos->nama_pasien = $request->nama_pasien;
+            $datapos->tempat_lahir = $request->tempat_lahir;
+            $datapos->tanggal_lahir = $request->tanggal_lahir;
+            $datapos->jenis_kelamin = $request->jenis_kelamin;
+            $datapos->usia = $request->usia;
+            $datapos->nama_orangtua = $request->nama_orangtua;
+            $datapos->rt = $request->rt_pasien;
+            $datapos->rw = $request->rw_pasien;
+            $datapos->berat_badan = $request->berat_badan;
+            $datapos->tinggi_badan = $request->tinggi_badan;
+            $datapos->kb = $request->kb;
+            $datapos->lingkar_kepala = $request->lingkar_kepala;
+            $datapos->lingkar_lengan = $request->lingkar_lengan;
+            $datapos->kader = $request->jumlah_kader;
+            if ($request->has('fl_o')) {
+                $datapos->fl_o = "Y";
+            }
+            if ($request->has('fl_naik')) {
+                $datapos->fl_naik = "Y";
+            }
+            if ($request->has('fl_turun')) {
+                $datapos->fl_turun = "Y";
+            }
+            if ($request->has('fl_tetap')) {
+                $datapos->fl_tetap = "Y";
+            }
+            if ($request->has('fl_hijau')) {
+                $datapos->fl_hijau = "Y";
+            }
+            if ($request->has('fl_kuning')) {
+                $datapos->fl_kuning = "Y";
+            }
+            if ($request->has('fl_bgm')) {
+                $datapos->fl_bgm = "Y";
+            }
+            if ($request->has('fl_pus')) {
+                $datapos->fl_pus = "Y";
+            }
+            if ($request->has('fl_wus')) {
+                $datapos->fl_wus = "Y";
+            }
+            if ($request->has('fl_ibu_hamil')) {
+                $datapos->fl_ibu_hamil = "Y";
+            }
+            if ($request->has('fl_menyusui')) {
+                $datapos->fl_menyusui = "Y";
+            }
+            if ($request->has('fl_lansia')) {
+                $datapos->fl_lansia = "Y";
+            }
+            if ($request->has('fl_lainnya')) {
+                $datapos->fl_lainnya = "Y";
+                $datapos->lainnya = $request->lainnya;
+            }
+            $datapos->alamat_pasien = "";
+            $datapos->kader_aktif = $request->jumlah_kader_aktif;
+            $datapos->updated_at = DateUtil::now();
+            $datapos->update();
 
-            if ($usia != null) {
+            if ($datapos != null) {
                 Alert::success("Success", "Usia has been updated");
                 return redirect('/master-data/usia')->withHeaders(['referer' => '']);
             }
         } else {
-            $data = [
-                "title" => "Edit Usia",
-                "menu" => "Master Data",
-                "sub_menu" => "Usia",
-                "datapos" => DataPosyandu::where('id', $id)->first(),
+            $form_data = [
+                "nomor" => CommonUtil::generateNumber(),
+                "jenis_kelamin" => [
+                    new JenisKelamin("L", "Laki-Laki"),
+                    new JenisKelamin("P", "Perempuan"),
+                ],
+                "puskesmas" => Puskesmas::all(),
+                "kelurahan" => Kelurahan::all(),
+                "kecamatan" => Kecamatan::all(),
+                "kota" => Kota::all(),
+                "kategori" => Kategori::all(),
+                "usia" => Usia::all(),
+                "bulan_kegiatan" => DateUtil::listMonth(),
+                "tahun_kegiatan" => DateUtil::listYear(date('Y', strtotime('-5 year')), date('Y', strtotime('+5 year'))),
             ];
-            return view('pages.master_data.category.edit', $data);
+            $data = [
+                "title" => "Edit Data",
+                "menu" => "Data Posyandu",
+                "sub_menu" => null,
+                "datapos" => DataPosyandu::where('id', $id)->first(),
+                "form_data" => $form_data,
+            ];
+            return view('pages.modules.data_posyandu.edit', $data);
         }
     }
 

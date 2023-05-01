@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content">
-        <form action="/data_posyandu/create" method="POST">
+        <form action="/data-posyandu/create" method="POST">
             @method('POST')
             @csrf
             <div class="row">
@@ -22,12 +22,12 @@
                         :items="$form_data['kecamatan']" />
                     <x-dropdown-input label="Kabupaten/Kota" id="kota" name="kota"
                         placeholder="Pilih Kabupaten/Kota..." :items="$form_data['kota']" />
-                    <x-dropdown-input label="Bulan Kegiatan" id="month" name="month" placeholder="Pilih Bulan..."
+                    <x-dropdown-input label="Bulan Kegiatan" id="bulan" name="bulan" placeholder="Pilih Bulan..."
                         :items="$form_data['bulan_kegiatan']" />
-                    <x-dropdown-input label="Tahun" id="year" name="year" placeholder="Pilih Tahun..."
+                    <x-dropdown-input label="Tahun" id="tahun" name="tahun" placeholder="Pilih Tahun..."
                         :items="$form_data['tahun_kegiatan']" />
-                    <x-text-input label="Tanggal Dibuat" type="datetime-local" id="created_date" name="created_date"
-                        placeholder="Tanggal Dibuat" value="{{ old('created_date') }}" />
+                    <x-text-input label="Tanggal Dibuat" type="datetime-local" id="tanggal_dibuat" name="tanggal_dibuat"
+                        placeholder="Tanggal Dibuat" value="{{ old('tanggal_dibuat') }}" />
                     <x-dropdown-input label="Kategori Posyandu" id="kategori" name="kategori"
                         placeholder="Pilih Kategori Posyandu..." :items="$form_data['kategori']" />
                     <x-text-input label="Nomor" type="text" id="nomor" name="nomor" placeholder="Nomor"
@@ -85,7 +85,7 @@
                         </div>
                         <div class="col-1"></div>
                     </div>
-                    <x-text-input label="Berat Badan" type="number" id="berat_badan" name="berat_badan"
+                    <x-text-input label="Berat Badan" type="text" id="berat_badan" name="berat_badan"
                         placeholder="Berat Badan" value="{{ old('berat_badan') }}" append-label="Kg" />
                     <x-text-input label="Tinggi Badan" type="number" id="tinggi_badan" name="tinggi_badan"
                         placeholder="Tinggi Badan" value="{{ old('tinggi_badan') }}" append-label="CM" />
@@ -241,7 +241,11 @@
                 }
             }
 
-            countMonth.val(months.length + " Bulan")
+            if (startMonth == endMonth) {
+                countMonth.val(0 + " Bulan")
+            } else {
+                countMonth.val(months.length - 1 + " Bulan")
+            }
         }
 
         function showLainnya(cb) {

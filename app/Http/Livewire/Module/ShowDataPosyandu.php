@@ -24,7 +24,7 @@ class ShowDataPosyandu extends Component
     public function render()
     {
         $data = [
-            "data_posyandu" => DataPosyandu::where($this->filter, 'like', '%' . $this->search . '%')->paginate(10),
+            "data_posyandu" => DataPosyandu::with('kategoriDetail')->where($this->filter, 'like', '%' . $this->search . '%')->paginate(10),
         ];
         return view('livewire.module.show-data-posyandu', $data);
     }

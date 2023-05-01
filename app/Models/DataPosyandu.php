@@ -61,33 +61,42 @@ class DataPosyandu extends Model
         'kader_aktif',
     ];
 
-    public function kategori()
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'tanggal_lahir' => 'datetime',
+    ];
+
+    public function kategoriDetail()
     {
-        return $this->belongsTo(Kategori::class)->withDefault();
+        return $this->belongsTo(Kategori::class, "kategori", "id");
     }
 
     public function kecamatan()
     {
-        return $this->belongsTo(Kecamatan::class)->withDefault();
+        return $this->belongsTo(Kecamatan::class, "kecamatan", "id");
     }
 
     public function kelurahan()
     {
-        return $this->belongsTo(Kelurahan::class)->withDefault();
+        return $this->belongsTo(Kelurahan::class, "kelurahan", "id");
     }
 
     public function kota()
     {
-        return $this->belongsTo(Kota::class)->withDefault();
+        return $this->belongsTo(Kota::class, "kota", "id");
     }
 
     public function puskesmas()
     {
-        return $this->belongsTo(Puskesmas::class)->withDefault();
+        return $this->belongsTo(Puskesmas::class, "puskesmas", "id");
     }
 
     public function usia()
     {
-        return $this->belongsTo(Usia::class)->withDefault();
+        return $this->belongsTo(Usia::class, "usia", "id");
     }
 }

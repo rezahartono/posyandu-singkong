@@ -5,14 +5,14 @@
     </div>
     <div class="col-8">
         <select class="form-control" name="{{ $name }}" id="{{ $id }}">
-            <option disabled selected value="">{{ $placeholder }}</option>
+            <option disabled selected>{{ $placeholder }}</option>
             @foreach ($items as $item => $it)
                 @if (is_string($it))
-                    <option value="{{ $it }}" @if (old($name) == $it) selected @endif>
+                    <option value="{{ $it }}" @if (old($name) == $it || $selectedItem == $it) selected @endif>
                         {{ $it }}
                     </option>
                 @else
-                    <option value="{{ $it->id }}" @if (old($name) == $it->id) selected @endif>
+                    <option value="{{ $it->id }}" @if (old($name) == $it->id || $selectedItem == $it->id) selected @endif>
                         {{ $it->name }}
                     </option>
                 @endif

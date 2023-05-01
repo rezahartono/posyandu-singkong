@@ -18,6 +18,13 @@
                 value="{{ $value }}" placeholder="{{ $placeholder }}"
                 @if ($disable) readonly @endif>
         @endif
+        @error($name)
+            <div class="alert alert-danger mt-2">
+                <ul>
+                    <li class="text-red-600">{{ $message }}</li>
+                </ul>
+            </div>
+        @enderror
     </div>
     <div class="col-1"></div>
 </div>
