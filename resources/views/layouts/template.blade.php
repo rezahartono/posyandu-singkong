@@ -73,7 +73,7 @@
         @include('layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper px-3 mb-5">
+        <div class="content-wrapper px-3">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
