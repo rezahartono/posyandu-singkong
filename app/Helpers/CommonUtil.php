@@ -17,6 +17,9 @@ class CommonUtil
     {
         $latest = DataPosyandu::latest()->first();
         $formatNumber = GenerateNumber::where("active", "Y")->first();
+        if ($formatNumber == null) {
+            return null;
+        }
         $number = $formatNumber->number_format;
         if ($latest != null) {
             $arrNumber = explode("-", $latest->nomor);

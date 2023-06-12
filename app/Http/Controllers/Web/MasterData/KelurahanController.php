@@ -33,8 +33,8 @@ class KelurahanController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $kelurahan = new Kelurahan();
@@ -70,8 +70,8 @@ class KelurahanController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $kelurahan = Kelurahan::where('id', $id)->first();

@@ -31,8 +31,8 @@ class GenerateNumberController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $number = new GenerateNumber();
@@ -74,8 +74,8 @@ class GenerateNumberController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $number = GenerateNumber::where('id', $id)->first();

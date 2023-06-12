@@ -27,7 +27,7 @@
                         <input type="text" name="name" class="form-control" id="name"
                             placeholder="Masukan nama lengkap" value="{{ $user->name }}">
                         @error('name')
-                            <div class="alert alert-danger mt-2">
+                            <div class="alert-danger rounded rounded-3 mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>
                                 </ul>
@@ -39,7 +39,7 @@
                         <input type="email" name="email" class="form-control" id="email" placeholder="Masukan Email"
                             value="{{ $user->email }}">
                         @error('email')
-                            <div class="alert alert-danger mt-2">
+                            <div class="alert-danger rounded rounded-3 mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>
                                 </ul>
@@ -51,7 +51,7 @@
                         <input type="date" name="birth_date" class="form-control" id="birth_date"
                             placeholder="Masukan Tanggal Lahir" value="{{ $user->tanggal_lahir->format('Y-m-d') }}">
                         @error('birth_date')
-                            <div class="alert alert-danger mt-2">
+                            <div class="alert-danger rounded rounded-3 mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>
                                 </ul>
@@ -66,7 +66,7 @@
                         <input type="text" name="username" class="form-control" id="username"
                             placeholder="Masukan Username" value="{{ $user->username }}">
                         @error('username')
-                            <div class="alert alert-danger mt-2">
+                            <div class="alert-danger rounded rounded-3 mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>
                                 </ul>
@@ -78,7 +78,7 @@
                         <input type="password" name="password" class="form-control" id="password"
                             placeholder="Masukan Kata Sandi" value="{{ old('password') }}">
                         @error('password')
-                            <div class="alert alert-danger mt-2">
+                            <div class="alert-danger rounded rounded-3 mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>
                                 </ul>
@@ -90,7 +90,7 @@
                         <input type="text" name="phone" class="form-control" id="phone"
                             placeholder="Masukan No. Telp" value="{{ $user->no_telp }}">
                         @error('phone')
-                            <div class="alert alert-danger mt-2">
+                            <div class="alert-danger rounded rounded-3 mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>
                                 </ul>

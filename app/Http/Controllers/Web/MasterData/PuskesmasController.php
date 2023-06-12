@@ -32,8 +32,8 @@ class PuskesmasController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $puskesmas = new Puskesmas();
@@ -69,8 +69,8 @@ class PuskesmasController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $puskesmas = Puskesmas::where('id', $id)->first();

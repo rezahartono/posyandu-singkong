@@ -32,8 +32,8 @@ class KategoriController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $kategori = new Kategori();
@@ -69,8 +69,8 @@ class KategoriController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $kategori = Kategori::where('id', $id)->first();

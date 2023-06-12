@@ -39,8 +39,8 @@ class UsersController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                // return back();
             }
 
             $user = new User();
@@ -96,8 +96,8 @@ class UsersController extends Controller
 
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $user = User::where('id', $id)->first();

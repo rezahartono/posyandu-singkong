@@ -65,8 +65,7 @@ class DataPosyanduController extends Controller
             //if validation fails
             if ($validator->fails()) {
                 // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                Alert::error('Error Occured!', $validator->messages());
-                return back();
+                return back()->withErrors($validator->errors());
             }
 
             $datapos = new DataPosyandu();
@@ -146,8 +145,13 @@ class DataPosyanduController extends Controller
                 return redirect('data-posyandu')->withHeaders(['referer' => '']);
             }
         } else {
+            $nomor = CommonUtil::generateNumber();
+            if ($nomor == null) {
+                Alert::error("Something went wrong!", "Please create generate number before create data posyandu!");
+                return back();
+            }
             $form_data = [
-                "nomor" => CommonUtil::generateNumber(),
+                "nomor" => $nomor,
                 "jenis_kelamin" => [
                     new JenisKelamin("L", "Laki-Laki"),
                     new JenisKelamin("P", "Perempuan"),
@@ -205,8 +209,8 @@ class DataPosyanduController extends Controller
             ]);
             //if validation fails
             if ($validator->fails()) {
-                Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
-                return back();
+                // Alert::error('Error Occured!', 'Silahkan Cek kembali permintaan anda');
+                return back()->withErrors($validator->errors());
             }
 
             $datapos = DataPosyandu::where('id', $id)->first();

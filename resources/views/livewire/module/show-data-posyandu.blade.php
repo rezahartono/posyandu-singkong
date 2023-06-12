@@ -18,6 +18,7 @@
                 </span>
             </div>
             <div class="ms-auto">
+                <a href="" class="btn btn-success mr-2"><i class="fas fa-print mr-2"></i>Print Report</a>
                 <a href="data-posyandu/create" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Buat Data</a>
             </div>
         </div>

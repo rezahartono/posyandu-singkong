@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,8 +17,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('username', 50)->unique();
             $table->string('no_telp', 15)->nullable();
-            $table->timestamp('tanggal_lahir');
-            $table->enum('fl_admin', ['Y','N'])->default('N');
+            $table->timestamp('tanggal_lahir')->default(Carbon::now());
+            $table->enum('fl_admin', ['Y', 'N'])->default('N');
         });
     }
 

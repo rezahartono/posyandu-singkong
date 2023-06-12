@@ -22,7 +22,7 @@
                             <strong>NUM-ABCD</strong>
                         </small>
                         @error('number')
-                            <div class="alert alert-danger mt-2">
+                            <div class="alert-danger rounded rounded-3 mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>
                                 </ul>

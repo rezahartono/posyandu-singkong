@@ -22,8 +22,7 @@
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
                         <textarea class="form-control" id="description" name="description" rows="3">{{ $kelurahan->description }}</textarea>
-
-                        @error('name')
+                        @error('description')
                             <div class="alert alert-danger mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>

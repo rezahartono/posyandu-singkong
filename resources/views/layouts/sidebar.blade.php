@@ -5,10 +5,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ Session::get('user')->photo_profile }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ Auth::user()->photo_profile }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Session::get('user')->name }}</a>
+                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -30,15 +30,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <a href="/" class="nav-link @if ($menu == 'Dashboard') active @endif">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/data-posyandu" class="nav-link @if ($menu == 'Data Posyandu') active @endif">
+                    <a href="/" class="nav-link @if ($menu == 'Data Posyandu') active @endif">
                         <i class="nav-icon fas fa-address-book"></i>
                         <p>
                             Data Posyandu

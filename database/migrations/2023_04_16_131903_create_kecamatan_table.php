@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('kecamatan', function (Blueprint $table) {
             $table->string('id', 60);
             $table->string('name', 150);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

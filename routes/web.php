@@ -30,7 +30,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/', [DataPosyanduController::class, 'index']);
     Route::prefix('data-posyandu')->group(function () {
         Route::get('/', [DataPosyanduController::class, 'index']);
         Route::get('create', [DataPosyanduController::class, 'create']);

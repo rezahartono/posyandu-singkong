@@ -12,7 +12,7 @@
                         <input type="text" name="name" class="form-control" id="name" placeholder="Masukan Nama"
                             value="{{ old('name') }}">
                         @error('name')
-                            <div class="alert alert-danger mt-2">
+                            <div class="alert-danger rounded rounded-3 mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>
                                 </ul>
@@ -23,8 +23,8 @@
                         <label for="description">Deskripsi</label>
                         <textarea class="form-control" id="description" name="description" rows="3"></textarea>
 
-                        @error('name')
-                            <div class="alert alert-danger mt-2">
+                        @error('description')
+                            <div class="alert-danger rounded rounded-3 mt-2">
                                 <ul>
                                     <li class="text-red-600">{{ $message }}</li>
                                 </ul>
