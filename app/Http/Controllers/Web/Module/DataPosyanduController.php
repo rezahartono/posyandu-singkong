@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Module;
 
+use App\Exports\DataPosyanduExport;
 use App\Helpers\CommonUtil;
 use App\Helpers\DateUtil;
 use App\Http\Controllers\Controller;
@@ -15,6 +16,7 @@ use App\Models\Puskesmas;
 use App\Models\Usia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DataPosyanduController extends Controller
@@ -35,31 +37,31 @@ class DataPosyanduController extends Controller
             // dd($request);
             $validator = Validator::make($request->all(), [
                 'nama_posyandu' => 'required|max:150',
-                'rt_rw' => 'nullable',
-                'puskesmas' => 'required',
-                'kelurahan' => 'required',
-                'kecamatan' => 'required',
-                'kota' => 'required',
-                'bulan' => 'required',
-                'tahun' => 'required',
-                'tanggal_dibuat' => 'required|date',
-                'kategori' => 'required',
-                'nomor' => 'required',
-                'nama_pasien' => 'required',
-                'tempat_lahir' => 'required',
-                'tanggal_lahir' => 'required|date',
-                'jenis_kelamin' => 'required|max:1',
-                'usia' => 'required',
-                'nama_orangtua' => 'required',
-                'rt_pasien' => 'required',
-                'rw_pasien' => 'required',
-                'berat_badan' => 'required',
-                'tinggi_badan' => 'required',
-                'kb' => 'required',
-                'lingkar_kepala' => 'required',
-                'lingkar_lengan' => 'required',
-                'jumlah_kader' => 'required',
-                'jumlah_kader_aktif' => 'required',
+                // 'rt_rw' => 'nullable',
+                // 'puskesmas' => 'required',
+                // 'kelurahan' => 'required',
+                // 'kecamatan' => 'required',
+                // 'kota' => 'required',
+                // 'bulan' => 'required',
+                // 'tahun' => 'required',
+                // 'tanggal_dibuat' => 'required|date',
+                // 'kategori' => 'required',
+                // 'nomor' => 'required',
+                // 'nama_pasien' => 'required',
+                // 'tempat_lahir' => 'required',
+                // 'tanggal_lahir' => 'required|date',
+                // 'jenis_kelamin' => 'required|max:1',
+                // 'usia' => 'required',
+                // 'nama_orangtua' => 'required',
+                // 'rt_pasien' => 'required',
+                // 'rw_pasien' => 'required',
+                // 'berat_badan' => 'required',
+                // 'tinggi_badan' => 'required',
+                // 'kb' => 'required',
+                // 'lingkar_kepala' => 'required',
+                // 'lingkar_lengan' => 'required',
+                // 'jumlah_kader' => 'required',
+                // 'jumlah_kader_aktif' => 'required',
             ]);
 
             //if validation fails
@@ -93,7 +95,7 @@ class DataPosyanduController extends Controller
             $datapos->kb = $request->kb;
             $datapos->lingkar_kepala = $request->lingkar_kepala;
             $datapos->lingkar_lengan = $request->lingkar_lengan;
-            $datapos->alamat_pasien = "";
+            // $datapos->alamat_pasien = "";
             $datapos->kader = $request->jumlah_kader;
             if ($request->has('fl_o')) {
                 $datapos->fl_o = "Y";
@@ -312,6 +314,18 @@ class DataPosyanduController extends Controller
             ];
             return view('pages.modules.data_posyandu.edit', $data);
         }
+    }
+
+    public function export($type)
+    {
+        $date = DateUtil::now()->format("Ymd");
+        if ($type == "pdf") {
+            return Excel::download(new DataPosyanduExport($type), 'data-posyandu-' . $date . '.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+        } else {
+            return Excel::download(new DataPosyanduExport($type), 'data-posyandu-' . $date . '.xlsx');
+        }
+
+        return back();
     }
 
     public function delete($id)

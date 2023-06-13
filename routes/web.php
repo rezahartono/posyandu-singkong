@@ -25,14 +25,17 @@ use App\Http\Controllers\Web\Setup\GenerateNumberController;
 |
 */
 
-Route::get('login', [AuthController::class, 'login'])->name('login');
-Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::middleware('islogin')->group(function () {
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [DataPosyanduController::class, 'index']);
     Route::prefix('data-posyandu')->group(function () {
         Route::get('/', [DataPosyanduController::class, 'index']);
+        Route::get('export/{type}', [DataPosyanduController::class, 'export']);
         Route::get('create', [DataPosyanduController::class, 'create']);
         Route::post('create', [DataPosyanduController::class, 'create']);
         Route::get('delete/{id}', [DataPosyanduController::class, 'delete']);

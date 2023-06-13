@@ -18,7 +18,11 @@
                 </span>
             </div>
             <div class="ms-auto">
-                <a href="" class="btn btn-success mr-2"><i class="fas fa-print mr-2"></i>Print Report</a>
+                <a href="data-posyandu/export/pdf" class="btn btn-warning mr-2"><i class="fas fa-print mr-2"></i>Report
+                    PDF</a>
+                <a href="data-posyandu/export/excel" class="btn btn-success mr-2"><i
+                        class="fas fa-print mr-2"></i>Report
+                    Excel</a>
                 <a href="data-posyandu/create" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Buat Data</a>
             </div>
         </div>
@@ -39,7 +43,8 @@
                             <tr>
                                 <th class="text-center" scope="row">{{ $datapos->nomor }}</th>
                                 <td class="text-center">{{ $datapos->nama_posyandu }}</td>
-                                <td class="text-center">{{ $datapos->kategoriDetail->name }}</td>
+                                <td class="text-center">
+                                    {{ $datapos->kategoriDetail != null ? $datapos->kategoriDetail->name : '' }}</td>
                                 <td class="text-center">{{ $datapos->nama_pasien }}</td>
                                 <td class="text-center">
                                     <a href="data-posyandu/edit/{{ $datapos->id }}" class="btn btn-primary">
