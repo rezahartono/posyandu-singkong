@@ -54,3 +54,8 @@ body {
 .content-wrapper {
     padding: 60px 0 !important;
 }
+
+.d-flex-gap {
+    display: flex;
+    gap: 10px;
+}

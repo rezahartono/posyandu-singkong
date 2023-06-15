@@ -135,6 +135,10 @@
     {{-- <script src="{{ asset('/dist/admin-lte') }}/dist/js/pages/dashboard.js"></script> --}}
     <script src="{{ asset('/js/app.js') }}"></script>
     <script>
+        function goBack() {
+            history.back()
+        }
+
         function showAlert(data) {
             switch (data.type) {
                 case "success":

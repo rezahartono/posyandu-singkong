@@ -215,7 +215,9 @@
                         </div> --}}
                     </div>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex-gap">
+                    <button type="button" class="btn btn-warning" onclick="goBack()"><i
+                            class="fas fa-arrow-left mr-2"></i>Back</button>
                     <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-2"></i>Save</button>
                 </div>
             </div>
