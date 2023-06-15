@@ -26,7 +26,7 @@ class DataPosyanduExport implements FromView
     public function view(): View
     {
         $data = [
-            'datas' => DataPosyandu::all()
+            'datas' => DataPosyandu::with('kategoriDetail', 'kecamatanDetail', 'kelurahanDetail', 'kotaDetail', 'puskesmasDetail', 'usiaDetail')->get(),
         ];
         return view('export-templates.data-posyandu', $data);
     }

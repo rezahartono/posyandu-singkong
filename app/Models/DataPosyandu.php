@@ -75,27 +75,27 @@ class DataPosyandu extends Model
         return $this->belongsTo(Kategori::class, "kategori", "id");
     }
 
-    public function kecamatan()
+    public function kecamatanDetail()
     {
         return $this->belongsTo(Kecamatan::class, "kecamatan", "id");
     }
 
-    public function kelurahan()
+    public function kelurahanDetail()
     {
         return $this->belongsTo(Kelurahan::class, "kelurahan", "id");
     }
 
-    public function kota()
+    public function kotaDetail()
     {
         return $this->belongsTo(Kota::class, "kota", "id");
     }
 
-    public function puskesmas()
+    public function puskesmasDetail()
     {
         return $this->belongsTo(Puskesmas::class, "puskesmas", "id");
     }
 
-    public function usia()
+    public function usiaDetail()
     {
         return $this->belongsTo(Usia::class, "usia", "id");
     }

@@ -60,23 +60,24 @@
             </tr>
         </thead>
         <tbody>
+            {{-- @dd($datas) --}}
             @foreach ($datas as $data)
                 <tr>
                     <td>{{ $data->nomor }}</td>
                     <td>{{ $data->nama_posyandu }}</td>
                     <td>{{ $data->alamat_posyandu }}</td>
-                    <td>{{ $data->kelurahan != null ? $data->kelurahan->name : '' }}</td>
-                    <td>{{ $data->kecamatan != null ? $data->kecamatan->name : '' }}</td>
-                    <td>{{ $data->kota != null ? $data->kota->name : '' }}</td>
-                    <td>{{ $data->puskesmas != null ? $data->puskesmas->name : '' }}</td>
+                    <td>{{ $data->kelurahanDetail != null ? $data->kelurahanDetail->name : '' }}</td>
+                    <td>{{ $data->kecamatanDetail != null ? $data->kecamatanDetail->name : '' }}</td>
+                    <td>{{ $data->kotaDetail != null ? $data->kotaDetail->name : '' }}</td>
+                    <td>{{ $data->puskesmasDetail != null ? $data->puskesmasDetail->name : '' }}</td>
                     <td>{{ $data->bulan }}</td>
                     <td>{{ $data->tahun }}</td>
-                    <td>{{ $data->kategori != null ? $data->kategori->name : '' }}</td>
+                    <td>{{ $data->kategoriDetail != null ? $data->kategoriDetail->name : '' }}</td>
                     <td>{{ $data->nama_pasien }}</td>
                     <td>{{ $data->tempat_lahir }}</td>
                     <td>{{ $data->tanggal_lahir }}</td>
                     <td>{{ $data->jenis_kelamin }}</td>
-                    <td>{{ $data->usia != null ? $data->usia->name : '' }}</td>
+                    <td>{{ $data->usiaDetail != null ? $data->usiaDetail->name : '' }}</td>
                     <td>{{ $data->nama_orangtua }}</td>
                     <td>{{ $data->rt }}</td>
                     <td>{{ $data->rw }}</td>
