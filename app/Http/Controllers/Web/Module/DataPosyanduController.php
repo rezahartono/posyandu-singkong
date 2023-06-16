@@ -72,7 +72,8 @@ class DataPosyanduController extends Controller
 
             $datapos = new DataPosyandu();
             $datapos->id = CommonUtil::generateId();
-            $datapos->nomor = $request->nomor;
+            // $datapos->nomor = $request->nomor;
+            $datapos->nomor = CommonUtil::generateNumber();
             $datapos->nama_posyandu = $request->nama_posyandu;
             $datapos->alamat_posyandu = $request->rt_rw;
             $datapos->kelurahan = $request->kelurahan;

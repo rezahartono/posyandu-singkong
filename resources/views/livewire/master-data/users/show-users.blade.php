@@ -40,7 +40,7 @@
                             <tr>
                                 <th class="text-center" scope="row">{{ $idx++ }}</th>
                                 <td class="text-center">{{ $user->name }}</td>
-                                <td class="text-center">{{ $user->tanggal_lahir }}</td>
+                                <td class="text-center">{{ $user->tanggal_lahir->format('d-m-Y') }}</td>
                                 <td class="text-center">{{ $user->email }}</td>
                                 <td class="text-center">
                                     <a href="/master-data/users/edit/{{ $user->id }}" class="btn btn-primary">

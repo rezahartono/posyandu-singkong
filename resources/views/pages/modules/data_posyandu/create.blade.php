@@ -32,8 +32,8 @@
                                 name="tanggal_dibuat" placeholder="Tanggal Dibuat" value="{{ old('tanggal_dibuat') }}" />
                             <x-dropdown-input label="Kategori Posyandu" id="kategori" name="kategori"
                                 placeholder="Pilih Kategori Posyandu..." :items="$form_data['kategori']" />
-                            <x-text-input label="Nomor" type="text" id="nomor" name="nomor" placeholder="Nomor"
-                                :disable="true" :value="$form_data['nomor']" />
+                            {{-- <x-text-input label="Nomor" type="text" id="nomor" name="nomor" placeholder="Nomor"
+                                :disable="true" :value="$form_data['nomor']" /> --}}
                             <x-text-input label="Nama Pasien" type="text" id="nama_pasien" name="nama_pasien"
                                 placeholder="Nama Pasien" :value="old('nama_pasien')" />
                             <div class="row mb-3">
