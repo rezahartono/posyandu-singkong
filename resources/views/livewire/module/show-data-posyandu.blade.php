@@ -18,11 +18,10 @@
                 </span>
             </div>
             <div class="ms-auto">
-                <a href="data-posyandu/export/pdf" class="btn btn-warning mr-2"><i class="fas fa-print mr-2"></i>Report
-                    PDF</a>
-                <a href="data-posyandu/export/excel" class="btn btn-success mr-2"><i
-                        class="fas fa-print mr-2"></i>Report
-                    Excel</a>
+                <button type="button" class="btn btn-secondary mr-2" data-toggle="modal" data-target="#download_modal">
+                    <i class="fas fa-file-download mr-2"></i> Download Report
+                </button>
+
                 <a href="data-posyandu/create" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Buat Data</a>
             </div>
         </div>
@@ -64,4 +63,114 @@
             {{ $data_posyandu->links() }}
         </div>
     </div>
+
+    <!-- Download Modal -->
+    <div class="modal fade" id="download_modal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="download_modal_label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="download_modal_label">Download Report</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <span>Download Filter:</span>
+                        </div>
+                        <div class="col-6 mt-3">
+                            <select class="form-control mb-3" id="filter_bulan">
+                                <option disabled selected>Pilih Bulan</option>
+                                @foreach ($download_data['bulan_kegiatan'] as $item => $it)
+                                    @if (is_string($it))
+                                        <option value="{{ $it }}">
+                                            {{ $it }}
+                                        </option>
+                                    @else
+                                        <option value="{{ $it->id }}">
+                                            {{ $it->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-6 mt-3">
+                            <select class="form-control" id="filter_tahun">
+                                <option disabled selected>Pilih Tahun</option>
+                                @foreach ($download_data['tahun_kegiatan'] as $item => $it)
+                                    @if (is_string($it))
+                                        <option value="{{ $it }}">
+                                            {{ $it }}
+                                        </option>
+                                    @else
+                                        <option value="{{ $it->id }}">
+                                            {{ $it->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="data-posyandu/export/pdf" id="download_pdf" onclick="closeModal('download_modal')"
+                        class="btn btn-warning mr-2"><i class="fas fa-print mr-2"></i>Report
+                        PDF</a>
+                    <a href="data-posyandu/export/excel" id="download_excel" onclick="closeModal('download_modal')"
+                        class="btn btn-success mr-2"><i class="fas fa-print mr-2"></i>Report
+                        Excel</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@push('ext-scripts')
+    <script>
+        var pdfUri = "data-posyandu/export/pdf"
+        var excelUri = "data-posyandu/export/excel"
+
+        var year = null
+        var month = null
+
+        $('#filter_tahun').on('change', function(event) {
+            year = $(event.target).val()
+            changeUrl()
+        })
+        $('#filter_bulan').on('change', function(event) {
+            month = $(event.target).val()
+            changeUrl()
+        })
+
+        function changeUrl() {
+            var newPdfUri = pdfUri;
+            var newExcelUri = excelUri;
+
+            if (month != null) {
+                newPdfUri += getSparator(newPdfUri) + "bulan=" + month
+                newExcelUri += getSparator(newExcelUri) + "bulan=" + month
+            }
+
+            if (year != null) {
+                newPdfUri += getSparator(newPdfUri) + "tahun=" + year
+                newExcelUri += getSparator(newExcelUri) + "tahun=" + year
+            }
+
+            console.log(newPdfUri)
+            console.log(newExcelUri)
+
+            $('#download_pdf').attr('href', newPdfUri)
+            $('#download_excel').attr('href', newExcelUri)
+        }
+
+        function getSparator(pathUri) {
+            if (pathUri.includes('?')) {
+                return '&'
+            }
+
+            return '?'
+        }
+    </script>
+@endpush

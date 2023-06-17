@@ -4,7 +4,8 @@
         <span class="h5">:</span>
     </div>
     <div class="col-8">
-        <select class="form-control" name="{{ $name }}" id="{{ $id }}">
+        <select class="form-control" @if ($onchange != null) onchange="{{ $onchange }}" @endif
+            name="{{ $name }}" id="{{ $id }}">
             <option disabled selected>{{ $placeholder }}</option>
             @foreach ($items as $item => $it)
                 @if (is_string($it))

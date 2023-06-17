@@ -10,11 +10,13 @@ use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
 
 class DataPosyanduExport implements FromView
 {
-    private $orientation;
+    private $orientation, $month, $year;
 
-    public function __construct($type)
+    public function __construct($type, $month, $year)
     {
         $this->orientation = PageSetup::ORIENTATION_LANDSCAPE;
+        $this->month = $month;
+        $this->year = $year;
 
         if ($type == "pdf") {
             $this->orientation = PageSetup::ORIENTATION_PORTRAIT;
@@ -25,8 +27,17 @@ class DataPosyanduExport implements FromView
      */
     public function view(): View
     {
+        $dataPosyandu = DataPosyandu::with('kategoriDetail', 'kecamatanDetail', 'kelurahanDetail', 'kotaDetail', 'puskesmasDetail', 'usiaDetail')->get();
+
+        if ($this->month != null && $this->year != null) {
+            $dataPosyandu = DataPosyandu::with('kategoriDetail', 'kecamatanDetail', 'kelurahanDetail', 'kotaDetail', 'puskesmasDetail', 'usiaDetail')
+                ->where('bulan', $this->month)
+                ->where('tahun', $this->year)
+                ->get();
+        }
+
         $data = [
-            'datas' => DataPosyandu::with('kategoriDetail', 'kecamatanDetail', 'kelurahanDetail', 'kotaDetail', 'puskesmasDetail', 'usiaDetail')->get(),
+            'datas' => $dataPosyandu,
         ];
         return view('export-templates.data-posyandu', $data);
     }

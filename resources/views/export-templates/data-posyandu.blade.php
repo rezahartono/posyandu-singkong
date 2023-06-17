@@ -75,7 +75,7 @@
                     <td>{{ $data->kategoriDetail != null ? $data->kategoriDetail->name : '' }}</td>
                     <td>{{ $data->nama_pasien }}</td>
                     <td>{{ $data->tempat_lahir }}</td>
-                    <td>{{ $data->tanggal_lahir }}</td>
+                    <td>{{ $data->tanggal_lahir->format('d-m-Y') }}</td>
                     <td>{{ $data->jenis_kelamin }}</td>
                     <td>{{ $data->usiaDetail != null ? $data->usiaDetail->name : '' }}</td>
                     <td>{{ $data->nama_orangtua }}</td>

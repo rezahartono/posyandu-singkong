@@ -6,13 +6,13 @@ use Illuminate\View\Component;
 
 class DropdownInput extends Component
 {
-    public $label, $id, $name, $placeholder, $items, $selectedItem;
+    public $label, $id, $name, $placeholder, $items, $selectedItem, $onchange;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label = "", $id = "", $name = "", $placeholder = "", $items = [], $selectedItem = "")
+    public function __construct($label = "", $id = "", $name = "", $placeholder = "", $items = [], $selectedItem = "", $onchange = null)
     {
         $this->label = $label;
         $this->id = $id;
@@ -20,6 +20,7 @@ class DropdownInput extends Component
         $this->placeholder = $placeholder;
         $this->items = $items;
         $this->selectedItem = $selectedItem;
+        $this->onchange = $onchange;
     }
 
     /**

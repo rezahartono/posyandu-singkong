@@ -139,6 +139,10 @@
             history.back()
         }
 
+        function closeModal(modalId) {
+            $('#' + modalId).modal('hide')
+        }
+
         function showAlert(data) {
             switch (data.type) {
                 case "success":
@@ -164,6 +168,7 @@
         }
     </script>
     @yield('scripts')
+    @stack('ext-scripts')
 </body>
 
 </html>

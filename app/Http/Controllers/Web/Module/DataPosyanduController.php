@@ -317,13 +317,16 @@ class DataPosyanduController extends Controller
         }
     }
 
-    public function export($type)
+    public function export($type, Request $request)
     {
-        $date = DateUtil::now()->format("Ymd");
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $date = DateUtil::now()->format("Ymd h-i-s");
+
         if ($type == "pdf") {
-            return Excel::download(new DataPosyanduExport($type), 'data-posyandu-' . $date . '.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+            return Excel::download(new DataPosyanduExport($type, $bulan, $tahun), 'data-posyandu-' . $date . '.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
         } else {
-            return Excel::download(new DataPosyanduExport($type), 'data-posyandu-' . $date . '.xlsx');
+            return Excel::download(new DataPosyanduExport($type, $bulan, $tahun), 'data-posyandu-' . $date . '.xlsx');
         }
 
         return back();

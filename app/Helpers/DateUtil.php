@@ -38,11 +38,17 @@ class DateUtil
         return $months;
     }
 
-    public static function listYear($start, $end)
+    public static function listYear($start = null, $end = null)
     {
         $years = array();
-        for ($year = $start; $year <= $end; $year++) {
-            $years[] = strval($year);
+        if ($start != null && $end != null) {
+            for ($year = $start; $year <= $end; $year++) {
+                $years[] = strval($year);
+            }
+        } else {
+            for ($year = 1980; $year <= 2050; $year++) {
+                $years[] = strval($year);
+            }
         }
         return $years;
     }
