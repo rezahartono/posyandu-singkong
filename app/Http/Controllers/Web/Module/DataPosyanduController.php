@@ -325,6 +325,8 @@ class DataPosyanduController extends Controller
 
         if ($type == "pdf") {
             return Excel::download(new DataPosyanduExport($type, $bulan, $tahun), 'data-posyandu-' . $date . '.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+        } elseif ($type == "csv") {
+            return Excel::download(new DataPosyanduExport($type, $bulan, $tahun), 'data-posyandu-' . $date . '.csv', \Maatwebsite\Excel\Excel::CSV);
         } else {
             return Excel::download(new DataPosyanduExport($type, $bulan, $tahun), 'data-posyandu-' . $date . '.xlsx');
         }

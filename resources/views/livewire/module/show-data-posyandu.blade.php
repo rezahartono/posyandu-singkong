@@ -115,12 +115,15 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="data-posyandu/export/pdf" id="download_pdf" onclick="closeModal('download_modal')"
+                    {{-- <a href="data-posyandu/export/pdf" id="download_pdf" onclick="closeModal('download_modal')"
                         class="btn btn-warning mr-2"><i class="fas fa-print mr-2"></i>Report
-                        PDF</a>
+                        PDF</a> --}}
                     <a href="data-posyandu/export/excel" id="download_excel" onclick="closeModal('download_modal')"
                         class="btn btn-success mr-2"><i class="fas fa-print mr-2"></i>Report
                         Excel</a>
+                    <a href="data-posyandu/export/csv" id="download_excel" onclick="closeModal('download_modal')"
+                        class="btn btn-secondary mr-2"><i class="fas fa-print mr-2"></i>Report
+                        CSV</a>
                 </div>
             </div>
         </div>
