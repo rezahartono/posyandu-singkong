@@ -15,7 +15,7 @@ class CommonUtil
 
     public static function generateNumber()
     {
-        $latest = DataPosyandu::latest()->first();
+        $latest = DataPosyandu::orderBy('nomor', 'DESC')->first();
         $formatNumber = GenerateNumber::where("active", "Y")->first();
         if ($formatNumber == null) {
             return null;
